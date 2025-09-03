@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flower Identifier 🌸</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🌸 SL Flora - Flower Identifier</h1>
+
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="image" accept="image/*" required>
+      <button type="submit">Identify Flower</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+      <h2>🔍 Prediction Result</h2>
+      <p><strong>Sinhala Name:</strong> {{ result['sinhala'] }}</p>
+      <p><strong>Scientific Name:</strong> {{ result['scientific'] }}</p>
+      <p><strong>Confidence:</strong> {{ '%.2f'|format(result['confidence'] * 100) }}%</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
